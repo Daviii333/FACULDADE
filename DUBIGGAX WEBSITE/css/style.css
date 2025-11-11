@@ -3,13 +3,19 @@
 /* Reset & Base */
 *, *::before, *::after { box-sizing: border-box; }
 html, body { height: 100%; }
-body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"; line-height: 1.5; color: var(--text); background: var(--bg); }
-img, svg, picture, video { max-width: 100%; display: block; }
-a { color: inherit; text-decoration: none; }
+body {
+  background: var(--bg) url("https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcROZlwuJgBwn35B8XuNuQBgHJTAWEz8FPwwBZhMEiJrgW1jmx0VFGUuKtm5Ze75Ih4E3cANrtdyI1wa0cg6ZoTUuJE9KiHY58GqSX9MsiTUmw")
+              center/cover no-repeat;
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+  line-height: 1.5;
+  color: var(--text);
+}
+
 
 :root {
   --bg: #0b0c10;
-  --surface: #14151b;
+  /* --surface: #14151b; */
   --text: #e8e8ea;
   --muted: #a9acb3;
   --primary: #ffd166;
