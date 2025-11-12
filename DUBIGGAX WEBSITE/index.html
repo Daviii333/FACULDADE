@@ -44,11 +44,9 @@
     </header>
 
     <main id="conteudo">
-      <!-- HERO -->
       <section id="inicio" class="hero section">
         <div class="container grid">
           <div>
-            <!-- <span class="pill">Engraxate profissional</span> -->
             <h1>
               Seu calçado com brilho de primeiro — rápido, caprichado e sem
               complicação.
@@ -70,7 +68,6 @@
               >
             </div>
           </div>
-          <!-- <div class="shoe-card" aria-hidden="true">✨👞</div> -->
         </div>
       </section>
 
@@ -236,7 +233,6 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
       async function getSheetData() {
-        // 🔹 Link público do Google Sheets (JSON)
         const sheetUrl =
           "https://docs.google.com/spreadsheets/d/1rzQvKDDTRgi8sN4TvmnE98b-6BkfoqNXlKZj6-RLLyU/gviz/tq?tqx=out:json";
 
@@ -244,130 +240,99 @@
         const text = await res.text();
         const json = JSON.parse(text.substr(47).slice(0, -2));
 
-        // Converte as linhas da planilha em arrays simples
         const rows = json.table.rows.map((r) => r.c.map((c) => c?.v));
         console.log(rows);
         return rows;
       }
 
       getSheetData().then((data) => {
-        const registros = data.slice(1); // remove cabeçalho
+        const registros = data.slice(1); 
 
         // --- GRÁFICO 1: ATENDIMENTOS POR DIA ---
         const labels = registros.map((row) => {
-          const dateValue = row[10]; // coluna "Data do atendimento"
-          if (!dateValue) return "Sem data";
+          const raw = row[8];
+          if (!raw) return "Sem data";
 
-          try {
-            // caso venha no formato "Date(2025,10,18)"
-            const [_, ano, mes, dia] = dateValue
-              .toString()
-              .match(/Date\((\d+),(\d+),(\d+)/)
-              .map(Number);
-            return `${dia}/${mes + 1}/${ano}`;
-          } catch (err) {
-            // caso venha como string normal
-            return new Date(dateValue).toLocaleDateString("pt-BR");
+          if (raw.includes("Date(")) {
+            const match = raw.match(/Date\((\d+),(\d+),(\d+)/);
+            if (match) {
+              const [, ano, mes, dia] = match.map(Number);
+              return `${dia}/${mes + 1}/${ano}`;
+            }
           }
+
+          return raw;
         });
 
-        const valores = registros.map((row) => Number(row[8] || 0)); // coluna "Quantidade de atendimentos"
+        const valores = registros.map((row) => Number(row[6] || 0)); // Quantidade de atendimentos
 
-        const ctx1 = document.getElementById("chartAtendimentos");
-        if (ctx1) {
-          new Chart(ctx1, {
-            type: "bar",
-            data: {
-              labels: labels,
-              datasets: [
-                {
-                  label: "Atendimentos",
-                  data: valores,
-                  backgroundColor: [
-                    "#004080",
-                    "#0059b3",
-                    "#0073e6",
-                    "#3399ff",
-                    "#66b3ff",
-                  ],
-                  borderRadius: 10,
-                },
-              ],
-            },
-            options: {
-              responsive: true,
-              animation: {
-                duration: 1200,
-                easing: "easeOutBounce",
+        const ctx1 = document
+          .getElementById("chartAtendimentos")
+          .getContext("2d");
+        new Chart(ctx1, {
+          type: "bar",
+          data: {
+            labels,
+            datasets: [
+              {
+                label: "Atendimentos",
+                data: valores,
+                backgroundColor: ["#003366", "#0055aa", "#0077cc", "#0099ee"],
+                borderRadius: 5,
               },
-              plugins: {
-                legend: { display: false },
-                tooltip: { backgroundColor: "#003366" },
-              },
-              scales: { y: { beginAtZero: true } },
-            },
-          });
-        }
+            ],
+          },
+          options: {
+            responsive: true,
+            plugins: { legend: { display: false } },
+            scales: { y: { beginAtZero: true } },
+          },
+        });
 
         // --- GRÁFICO 2: SATISFAÇÃO DOS CLIENTES ---
         const totais = { Satisfeito: 0, Regular: 0, Insatisfeito: 0 };
 
         registros.forEach((row) => {
-          const valor = row[9];
-          if (!valor) return;
-          if (typeof valor === "string") {
-            if (valor.includes("Satisfeito")) totais.Satisfeito++;
-            else if (valor.includes("Regular")) totais.Regular++;
-            else if (valor.includes("Insatisfeito")) totais.Insatisfeito++;
-          } else {
-            if (valor >= 4) totais.Satisfeito++;
-            else if (valor === 3) totais.Regular++;
-            else totais.Insatisfeito++;
-          }
+          const valor = String(row[7] || "").toLowerCase();
+          if (valor.includes("5") || valor.includes("satisfeito"))
+            totais.Satisfeito++;
+          else if (valor.includes("3") || valor.includes("regular"))
+            totais.Regular++;
+          else if (valor.includes("1") || valor.includes("insatisfeito"))
+            totais.Insatisfeito++;
         });
 
-        const ctx2 = document.getElementById("chartSatisfacao");
-        if (ctx2) {
-          new Chart(ctx2, {
-            type: "doughnut",
-            data: {
-              labels: ["Satisfeitos", "Regulares", "Insatisfeitos"],
-              datasets: [
-                {
-                  data: [
-                    totais.Satisfeito,
-                    totais.Regular,
-                    totais.Insatisfeito,
-                  ],
-                  backgroundColor: ["#003366", "#f4b400", "#cccccc"],
-                },
-              ],
-            },
-            options: {
-              animation: {
-                animateScale: true,
-                duration: 1500,
+        const ctx2 = document
+          .getElementById("chartSatisfacao")
+          .getContext("2d");
+        new Chart(ctx2, {
+          type: "doughnut",
+          data: {
+            labels: ["Satisfeitos", "Regulares", "Insatisfeitos"],
+            datasets: [
+              {
+                data: [totais.Satisfeito, totais.Regular, totais.Insatisfeito],
+                backgroundColor: ["#003366", "#f4b400", "#ccc"],
               },
-              plugins: {
-                legend: { position: "bottom" },
-                tooltip: { backgroundColor: "#003366" },
-              },
+            ],
+          },
+          options: {
+            plugins: {
+              legend: { position: "bottom" },
+              tooltip: { backgroundColor: "#003366" },
             },
-          });
-        }
-      });
+          },
+        });
 
-      // --- GRÁFICO 3: SERVIÇOS MAIS REALIZADOS ---
-      const servicos = {};
+        // --- GRÁFICO 3: SERVIÇOS MAIS REALIZADOS ---
+        const servicos = {};
+        registros.forEach((row) => {
+          const tipo = row[5];
+          if (!tipo) return;
+          servicos[tipo] = (servicos[tipo] || 0) + 1;
+        });
 
-      registros.forEach((row) => {
-        const tipo = row[7]; // coluna "Tipo de serviço realizado"
-        if (!tipo) return;
-        servicos[tipo] = (servicos[tipo] || 0) + 1;
-      });
-
-      const ctx3 = document.getElementById("chartServicos");
-      if (ctx3) {
+        const ctx3 = document.getElementById("chartServicos").getContext("2d");
         new Chart(ctx3, {
           type: "pie",
           data: {
@@ -380,64 +345,53 @@
                   "#00509e",
                   "#00a6fb",
                   "#ffd60a",
-                  "#ffc300",
                   "#ff5733",
                 ],
               },
             ],
           },
           options: {
-            plugins: {
-              legend: { position: "bottom" },
-              tooltip: { backgroundColor: "#002855" },
-            },
+            plugins: { legend: { position: "bottom" } },
           },
         });
 
         // --- GRÁFICO 4: ATENDIMENTOS POR COLABORADOR ---
         const colaboradores = {};
-
         registros.forEach((row) => {
-          const nome = row[5] || row[6] || "Não informado"; // coluna "Nome do colaborador"
-          const qtd = Number(row[8] || 0); // coluna "Quantidade de atendimentos"
+          const nome = row[9] || "Não informado";
+          const qtd = Number(row[6] || 0);
           colaboradores[nome] = (colaboradores[nome] || 0) + qtd;
         });
 
-        const ctx4 = document.getElementById("chartColaboradores");
-        if (ctx4) {
-          new Chart(ctx4, {
-            type: "bar",
-            data: {
-              labels: Object.keys(colaboradores),
-              datasets: [
-                {
-                  label: "Atendimentos",
-                  data: Object.values(colaboradores),
-                  backgroundColor: [
-                    "#003366",
-                    "#0055aa",
-                    "#0077cc",
-                    "#0099ee",
-                    "#00bbff",
-                  ],
-                  borderRadius: 8,
-                },
-              ],
-            },
-            options: {
-              responsive: true,
-              plugins: {
-                legend: { display: false },
-                tooltip: { backgroundColor: "#003366" },
+        const ctx4 = document
+          .getElementById("chartColaboradores")
+          .getContext("2d");
+        new Chart(ctx4, {
+          type: "bar",
+          data: {
+            labels: Object.keys(colaboradores),
+            datasets: [
+              {
+                label: "Atendimentos",
+                data: Object.values(colaboradores),
+                backgroundColor: [
+                  "#003366",
+                  "#0055aa",
+                  "#0077cc",
+                  "#0099ee",
+                  "#00bbff",
+                ],
+                borderRadius: 8,
               },
-              scales: {
-                x: { grid: { display: false } },
-                y: { beginAtZero: true },
-              },
-            },
-          });
-        }
-      }
+            ],
+          },
+          options: {
+            responsive: true,
+            plugins: { legend: { display: false } },
+            scales: { y: { beginAtZero: true } },
+          },
+        });
+      });
     </script>
   </body>
 </html>
