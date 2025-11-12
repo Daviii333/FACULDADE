@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta
+      name="description"
+      content="Serviço de engraxate: engraxamento, polimento e cuidados com couro. Qualidade rápida e preço justo."
+    />
+    <title>Heróis de Verdade — Engraxate</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🥿</text></svg>"
+    />
+    <!-- CSS  -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header>
+      <div
+        class="container nav"
+        role="navigation"
+        aria-label="Navegação principal"
+      >
+        <div class="brand">
+          <img
+            src="img/logo_projeto.jpeg"
+            alt="Logo Heróis de Verdade"
+            class="logo-img"
+          />
+          <span>Heróis de Verdade</span>
+        </div>
+
+        <nav>
+          <ul>
+            <li><a href="#inicio">Início</a></li>
+            <li><a href="#servicos">Serviços</a></li>
+            <li><a href="#resultados ">Resultados </a></li>
+            <li><a href="#contato">Contato</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="conteudo">
+      <section id="inicio" class="hero section">
+        <div class="container grid">
+          <div>
+            <h1>
+              Seu calçado com brilho de primeiro — rápido, caprichado e sem
+              complicação.
+            </h1>
+            <p>
+              Engraxe, polimento e hidratação do couro. Atendimento local e
+              delivery sob consulta.
+            </p>
+            <div class="cta">
+              <a
+                class="btn btn-primary"
+                href="https://wa.me/5599999999999"
+                target="_blank"
+                rel="noopener"
+                >💬 Falar no WhatsApp</a
+              >
+              <a class="btn btn-outline" href="tel:+55-99-9999-9999"
+                >📞 Ligar agora</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SOBRE -->
+      <section id="sobre" class="section">
+        <div class="container">
+          <h2>Sobre</h2>
+          <p class="muted">
+            Há mais de 10 anos cuidando de couro e camurça. Produtos de
+            qualidade, técnica apurada e atenção aos detalhes para prolongar a
+            vida do seu calçado.
+          </p>
+        </div>
+      </section>
+
+      <!-- SERVIÇOS -->
+      <section id="servicos" class="section">
+        <div class="container">
+          <h2>Serviços</h2>
+          <div class="grid grid-4">
+            <article class="card">
+              <span class="badge">Rápido</span>
+              <h3>Engraxe</h3>
+              <p class="muted">
+                Limpeza leve e aplicação de cera para brilho imediato.
+              </p>
+              <!-- <strong class="price">R$ 20</strong> -->
+            </article>
+
+            <article class="card">
+              <span class="badge">Popular</span>
+              <h3>Polimento Premium</h3>
+              <p class="muted">Brilho espelhado com acabamento resistente.</p>
+              <!-- <strong class="price">R$ 35</strong> -->
+            </article>
+            <article class="card">
+              <span class="badge">Proteção</span>
+              <h3>Hidratação do Couro</h3>
+              <p class="muted">
+                Nutrição do couro para evitar ressecamento e rachaduras.
+              </p>
+              <!-- <strong class="price">R$ 30</strong> -->
+            </article>
+            <article class="card">
+              <span class="badge">Extra</span>
+              <h3>Impermeabilização</h3>
+              <p class="muted">Camada protetora contra água e sujeira.</p>
+              <!-- <strong class="price">R$ 25</strong> -->
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- RESULTADOS -->
+      <section id="resultados" class="section">
+        <div class="container">
+          <h2>Resultados da Semana</h2>
+          <p
+            class="muted"
+            style="text-align: center; max-width: 600px; margin: 0 auto 2rem"
+          >
+            Aqui você pode acompanhar o desempenho da equipe Heróis de Verdade —
+            número de atendimentos, clientes satisfeitos e produtividade
+            semanal.
+          </p>
+
+          <div class="charts-grid">
+            <div class="chart-card">
+              <h3>Atendimentos por Dia</h3>
+              <canvas id="chartAtendimentos"></canvas>
+            </div>
+
+            <div class="chart-card">
+              <h3>Serviços mais realizados</h3>
+              <canvas id="chartServicos"></canvas>
+            </div>
+
+            <div class="chart-card">
+              <h3>Atendimentos por Colaborador</h3>
+              <canvas id="chartColaboradores"></canvas>
+            </div>
+
+            <div class="chart-card">
+              <h3>Satisfação dos Clientes</h3>
+              <canvas id="chartSatisfacao"></canvas>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contato" class="section contact">
+        <div class="container">
+          <h2>Contato</h2>
+          <div class="wrap">
+            <div class="panel">
+              <ul class="list" aria-label="Meios de contato">
+                <li>
+                  <span aria-hidden="true">⏰</span>
+                  <div>
+                    <strong>Horários</strong>
+                    <div class="muted">Seg a Sex 9h–18h, Sáb 9h–13h</div>
+                  </div>
+                </li>
+                <li>
+                  <span aria-hidden="true">☎️</span>
+                  <div>
+                    <strong>Telefone</strong>
+                    <div>
+                      <a href="tel:+55-61-99967-0088" class="muted"
+                        >(61) 9 9967-0088</a
+                      >
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <span aria-hidden="true">✉️</span>
+                  <div>
+                    <strong>Email</strong>
+                    <div>
+                      <a
+                        href="mailto:ouvidoria@heroisdeverdade.org.br"
+                        class="muted"
+                        >ouvidoria@heroisdeverdade.org.br</a
+                      >
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="panel">
+              <p class="muted">Prefere falar agora?</p>
+              <div class="cta">
+                <a
+                  class="btn btn-primary"
+                  href="https://wa.me/5599999999999"
+                  target="_blank"
+                  rel="noopener"
+                  >💬 WhatsApp</a
+                >
+                <a class="btn" href="tel:+55-99-9999-9999">📞 Ligar</a>
+                <a class="btn" href="mailto:contato@exemplo.com"
+                  >✉️ Enviar email</a
+                >
+              </div>
+              <p style="margin-top: 1rem" class="muted">
+                Atendemos também empresas e eventos.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <small
+          >© <span id="ano"></span> Heróis de Verdade — Engraxate. Todos os
+          direitos reservados.</small
+        >
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      async function getSheetData() {
+        const sheetUrl =
+          "https://docs.google.com/spreadsheets/d/1rzQvKDDTRgi8sN4TvmnE98b-6BkfoqNXlKZj6-RLLyU/gviz/tq?tqx=out:json";
+
+        const res = await fetch(sheetUrl);
+        const text = await res.text();
+        const json = JSON.parse(text.substr(47).slice(0, -2));
+
+        const rows = json.table.rows.map((r) => r.c.map((c) => c?.v));
+        console.log(rows);
+        return rows;
+      }
+
+      getSheetData().then((data) => {
+        const registros = data.slice(1); 
+
+        // --- GRÁFICO 1: ATENDIMENTOS POR DIA ---
+        const labels = registros.map((row) => {
+          const raw = row[8];
+          if (!raw) return "Sem data";
+
+          if (raw.includes("Date(")) {
+            const match = raw.match(/Date\((\d+),(\d+),(\d+)/);
+            if (match) {
+              const [, ano, mes, dia] = match.map(Number);
+              return `${dia}/${mes + 1}/${ano}`;
+            }
+          }
+
+          return raw;
+        });
+
+        const valores = registros.map((row) => Number(row[6] || 0)); // Quantidade de atendimentos
+
+        const ctx1 = document
+          .getElementById("chartAtendimentos")
+          .getContext("2d");
+        new Chart(ctx1, {
+          type: "bar",
+          data: {
+            labels,
+            datasets: [
+              {
+                label: "Atendimentos",
+                data: valores,
+                backgroundColor: ["#003366", "#0055aa", "#0077cc", "#0099ee"],
+                borderRadius: 5,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            plugins: { legend: { display: false } },
+            scales: { y: { beginAtZero: true } },
+          },
+        });
+
+        // --- GRÁFICO 2: SATISFAÇÃO DOS CLIENTES ---
+        const totais = { Satisfeito: 0, Regular: 0, Insatisfeito: 0 };
+
+        registros.forEach((row) => {
+          const valor = String(row[7] || "").toLowerCase();
+          if (valor.includes("5") || valor.includes("satisfeito"))
+            totais.Satisfeito++;
+          else if (valor.includes("3") || valor.includes("regular"))
+            totais.Regular++;
+          else if (valor.includes("1") || valor.includes("insatisfeito"))
+            totais.Insatisfeito++;
+        });
+
+        const ctx2 = document
+          .getElementById("chartSatisfacao")
+          .getContext("2d");
+        new Chart(ctx2, {
+          type: "doughnut",
+          data: {
+            labels: ["Satisfeitos", "Regulares", "Insatisfeitos"],
+            datasets: [
+              {
+                data: [totais.Satisfeito, totais.Regular, totais.Insatisfeito],
+                backgroundColor: ["#003366", "#f4b400", "#ccc"],
+              },
+            ],
+          },
+          options: {
+            plugins: {
+              legend: { position: "bottom" },
+              tooltip: { backgroundColor: "#003366" },
+            },
+          },
+        });
+
+        // --- GRÁFICO 3: SERVIÇOS MAIS REALIZADOS ---
+        const servicos = {};
+        registros.forEach((row) => {
+          const tipo = row[5];
+          if (!tipo) return;
+          servicos[tipo] = (servicos[tipo] || 0) + 1;
+        });
+
+        const ctx3 = document.getElementById("chartServicos").getContext("2d");
+        new Chart(ctx3, {
+          type: "pie",
+          data: {
+            labels: Object.keys(servicos),
+            datasets: [
+              {
+                data: Object.values(servicos),
+                backgroundColor: [
+                  "#002855",
+                  "#00509e",
+                  "#00a6fb",
+                  "#ffd60a",
+                  "#ff5733",
+                ],
+              },
+            ],
+          },
+          options: {
+            plugins: { legend: { position: "bottom" } },
+          },
+        });
+
+        // --- GRÁFICO 4: ATENDIMENTOS POR COLABORADOR ---
+        const colaboradores = {};
+        registros.forEach((row) => {
+          const nome = row[9] || "Não informado";
+          const qtd = Number(row[6] || 0);
+          colaboradores[nome] = (colaboradores[nome] || 0) + qtd;
+        });
+
+        const ctx4 = document
+          .getElementById("chartColaboradores")
+          .getContext("2d");
+        new Chart(ctx4, {
+          type: "bar",
+          data: {
+            labels: Object.keys(colaboradores),
+            datasets: [
+              {
+                label: "Atendimentos",
+                data: Object.values(colaboradores),
+                backgroundColor: [
+                  "#003366",
+                  "#0055aa",
+                  "#0077cc",
+                  "#0099ee",
+                  "#00bbff",
+                ],
+                borderRadius: 8,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            plugins: { legend: { display: false } },
+            scales: { y: { beginAtZero: true } },
+          },
+        });
+      });
+    </script>
+  </body>
+</html>
