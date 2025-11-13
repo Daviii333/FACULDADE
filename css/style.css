@@ -32,7 +32,8 @@ body {
   margin-inline: auto;
 }
 .section {
-  padding: 50px 0;
+  padding: 25px 0;
+  color: var(--secondary);
 }
 .section h2 {
   color: var(--secondary);
@@ -42,6 +43,7 @@ body {
 }
 .muted {
   color: var(--muted);
+  font-size: 20px;
 }
 
 /* ========== CABEÇALHO ========== */
@@ -56,16 +58,24 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  min-height: 70px;
+  min-height: 80px;
+  color: #b94596;
 }
+.title {
+  font-size: 18px;
+  font-weight: 700;
+  /* color:#B94596; */
+}
+
 .brand {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-weight: 700;
-  color: var(--secondary);
-  font-size: 1.2rem;
+  font-weight: bold;
+  color: #b94596;
+  font-size: 1.4rem;
 }
+
 .brand .logo {
   width: 40px;
   height: 40px;
